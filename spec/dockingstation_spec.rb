@@ -45,6 +45,10 @@ describe DockingStation do
     it 'raises an error when attempting to call .empty from outside instances of the DockingStation class' do
       expect { subject.empty? }.to raise_error(NoMethodError)
     end
+
+    it 'returns a capacity of 20 if a new docking station is instantiated without an argument' do
+      expect(subject::capacity).to eq (20)
+    end
   end
 
 end
