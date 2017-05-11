@@ -8,7 +8,7 @@ attr_reader :bikes
   end
 
   def release_bike
-    fail 'No bikes available' if @bikes.empty?
+    fail 'No bikes available' if empty?
     @bikes.last
   end
 
@@ -22,4 +22,9 @@ attr_reader :bikes
     def full?
       @bikes.count >= 20 ? true : false
     end
+
+    def empty?
+      @bikes.count == 0 ? true : false
+    end
+
 end
