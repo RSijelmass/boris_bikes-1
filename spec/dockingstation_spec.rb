@@ -3,7 +3,7 @@ require "dockingstation.rb"
 describe DockingStation do
 
   it { is_expected.to respond_to(:dock_bike).with(1).argument}
-  it { is_expected.to respond_to :bike}
+  it { is_expected.to respond_to :bikes}
 
   describe '#release_bike' do
     it 'releases a bike' do
@@ -38,7 +38,7 @@ describe DockingStation do
     it 'returns docked bikes' do
       bike = Bike.new
       subject.dock_bike(bike)
-      expect(subject.bike).to eq bike
+      expect(subject.bikes.last).to eq bike
     end
   end
 
