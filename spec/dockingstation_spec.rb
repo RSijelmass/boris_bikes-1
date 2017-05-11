@@ -25,10 +25,6 @@ describe DockingStation do
   end
 
   describe '#dock_bike' do
-    it 'raises an error when attempting to dock a bike in a full station' do
-      20.times { subject.dock_bike(Bike.new) }
-      expect { subject.dock_bike Bike.new }.to raise_error 'Docking station full'
-    end
 
     it 'docks something' do
       bike = Bike.new
@@ -39,6 +35,15 @@ describe DockingStation do
       bike = Bike.new
       subject.dock_bike(bike)
       expect(subject.bikes.last).to eq bike
+    end
+
+    it 'raises an error when attempting to dock a bike in a full station' do
+      20.times { subject.dock_bike(Bike.new) }
+      expect { subject.dock_bike Bike.new }.to raise_error 'Docking station full'
+    end
+
+    it 'raises an error when attempting to call .empty from outside instances of the DockingStation class' do
+      expect { subject.empty? }.to raise_error(NoMethodError)
     end
   end
 end
