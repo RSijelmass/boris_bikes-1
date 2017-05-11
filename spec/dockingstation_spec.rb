@@ -49,6 +49,12 @@ describe DockingStation do
     it 'returns a capacity of 20 if a new docking station is instantiated without an argument' do
       expect(subject::capacity).to eq (20)
     end
+
+    it 'returns the argued capacity if a new DockingStation is instantiated with an arg' do
+      new_capacity = 15
+      subject = DockingStation.new(new_capacity)
+      expect(subject::capacity).to eq new_capacity
+    end
   end
 
 end
