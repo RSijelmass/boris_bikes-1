@@ -5,7 +5,6 @@ require './lib/dockingstation.rb'
 dock = DockingStation.new
 bike = Bike.new
 
-# It checks for a capacity instance variable
+# It can respond 'false' to .working?
 
-p dock.bikes
-p dock::capacity
+bike.working? == false
