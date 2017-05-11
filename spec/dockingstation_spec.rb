@@ -40,6 +40,11 @@ describe DockingStation do
       subject.dock_bike(bike)
       expect(subject.bikes.last).to eq bike
     end
+
+    it 'checks whether the docking station is full?' do
+      20.times { subject.dock_bike(Bike.new) }
+      expect (subject.full?).to eq true
+    end
   end
 
 end

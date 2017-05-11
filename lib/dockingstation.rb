@@ -13,7 +13,7 @@ attr_reader :bikes
   end
 
   def dock_bike(bike)
-    fail 'Docking station full' if @bikes.count == 20
+    fail 'Docking station full' if @bikes.count >= 20
     @bikes << bike
     @bikes.last
   end
