@@ -2,8 +2,9 @@ require "dockingstation.rb"
 
 describe DockingStation do
 
-  it { is_expected.to respond_to(:dock_bike).with(1).argument}
-  it { is_expected.to respond_to :bikes}
+  it { is_expected.to respond_to(:dock_bike).with(1).argument }
+  it { is_expected.to respond_to :bikes }
+  it { is_expected.to respond_to :capacity }
 
   describe '#release_bike' do
     it 'releases a bike' do
@@ -46,7 +47,4 @@ describe DockingStation do
     end
   end
 
-  it "checks for a '@capacity' instance variable" do
-    expect { subject.capacity }.to eq capacity
-  end
 end
