@@ -25,7 +25,6 @@ describe DockingStation do
   end
 
   describe '#dock_bike' do
-
     it 'docks something' do
       bike = Bike.new
       expect(subject.dock_bike(bike)).to eq bike
@@ -45,5 +44,9 @@ describe DockingStation do
     it 'raises an error when attempting to call .empty from outside instances of the DockingStation class' do
       expect { subject.empty? }.to raise_error(NoMethodError)
     end
+  end
+
+  it "checks for a '@capacity' instance variable" do
+    expect { subject.capacity }.to eq capacity
   end
 end
