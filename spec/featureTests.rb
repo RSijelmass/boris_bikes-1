@@ -13,4 +13,8 @@ bike.report_broken == true
 
 bike.working? == true
 bike.report_broken
-p bike.working? == false # Expected to eq true
+bike.working? == false # Expected to eq true
+
+# Only release a bike if @status == working
+dock.dock_bike(bike)
+p dock.release_bike == "Unfortunately all docked bikes are broken" # Expected to eq true
