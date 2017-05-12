@@ -1,5 +1,6 @@
 class Bike
-
+  attr_reader :status
+  
   def initialize
     @status = "working"
   end

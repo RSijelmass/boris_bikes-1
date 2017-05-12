@@ -10,7 +10,7 @@ attr_reader :bikes, :capacity
 
   def release_bike
     fail 'No bikes available' if empty?
-    @bikes.pop
+    hold?
   end
 
   def dock_bike(bike)
@@ -26,6 +26,15 @@ attr_reader :bikes, :capacity
 
     def empty?
       @bikes.count == 0 ? true : false
+    end
+
+    def hold?
+      @bikes.each do |bike|
+        next if bike.working? == false
+        @bikes.delete(bike)
+        return bike
+      end
+      fail "Unfortunately all docked bikes are broken"
     end
 
 end
