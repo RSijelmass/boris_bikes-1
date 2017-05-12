@@ -10,7 +10,7 @@ attr_reader :bikes, :capacity
 
   def release_bike
     fail 'No bikes available' if empty?
-    @bikes.last
+    @bikes.pop
   end
 
   def dock_bike(bike)
