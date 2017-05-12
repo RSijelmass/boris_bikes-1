@@ -18,3 +18,5 @@
 | Van             | collect_fixed_bikes           |
 | Van             | deliver_fixed_bikes           |
 | Garage          | fix_bikes                     |
+| Garage          | accept_broken_bikes           |
+| Garage          | return_fixed_bikes            |
