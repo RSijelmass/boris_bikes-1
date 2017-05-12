@@ -13,7 +13,7 @@
 | Docking Station | only release working bikes    |
 | Docking Station | dock_bike                     |
 | Docking Station | accepts bike (broken or not)  |
-| Van             | release_broken_bikes          |
+| Van             | collect_broken_bikes          |
 | Van             | deliver_broken_bikes          |
 | Van             | collect_fixed_bikes           |
 | Van             | deliver_fixed_bikes           |
