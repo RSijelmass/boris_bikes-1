@@ -1,5 +1,7 @@
 class Van
 
+  attr_reader :payload
+  
   def initialize
     @payload = []
   end
