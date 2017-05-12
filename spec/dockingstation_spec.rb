@@ -2,20 +2,21 @@ require "dockingstation.rb"
 
 describe DockingStation do
 
+  let (:bike) { double(:bike) }
+
   it { is_expected.to respond_to(:dock_bike).with(1).argument }
   it { is_expected.to respond_to :bikes }
   it { is_expected.to respond_to :capacity }
 
   describe '#release_bike' do
     it 'releases a bike' do
-      bike = Bike.new
+      allow(bike).to receive(:working?).and_return(true)
       subject.dock_bike(bike)
       expect(subject.release_bike).to eq bike
     end
 
     it "releases working bikes" do
-      #bike = subject.release_bike
-      bike = Bike.new
+      allow(bike).to receive(:working?).and_return(true)
       subject.dock_bike(bike)
       expect(bike).to be_working
     end
@@ -25,7 +26,8 @@ describe DockingStation do
     end
 
     it 'does not release broken bikes' do
-      bike = Bike.new
+      allow(bike).to receive(:working?).and_return(false)
+      allow(bike).to receive(:report_broken).and_return("broken")
       bike.report_broken
       subject.dock_bike(bike)
       expect{subject.release_bike}.to raise_error "Unfortunately all docked bikes are broken"
@@ -34,19 +36,17 @@ describe DockingStation do
 
   describe '#dock_bike' do
     it 'docks something' do
-      bike = Bike.new
       expect(subject.dock_bike(bike)).to eq bike
     end
 
     it 'returns docked bikes' do
-      bike = Bike.new
       subject.dock_bike(bike)
       expect(subject.bikes.last).to eq bike
     end
 
     it 'raises an error when attempting to dock a bike in a full station' do
-      (subject::capacity).times { subject.dock_bike(Bike.new) }
-      expect { subject.dock_bike Bike.new }.to raise_error 'Docking station full'
+      (subject::capacity).times { subject.dock_bike(double(:bike)) }
+      expect { subject.dock_bike double(:bike) }.to raise_error 'Docking station full'
     end
 
     it 'raises an error when attempting to call .empty from outside instances of the DockingStation class' do
