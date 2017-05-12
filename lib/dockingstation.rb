@@ -1,11 +1,12 @@
 require_relative 'bike'
 
 class DockingStation
-attr_reader :bikes, :capacity
+attr_reader :bikes, :capacity, :broken_bikes
 
   def initialize(capacity=20)
     @bikes = []
     @capacity = capacity
+    @broken_bikes = []
   end
 
   def release_bike
@@ -17,6 +18,14 @@ attr_reader :bikes, :capacity
     fail 'Docking station full' if full?
     @bikes << bike
     @bikes.last
+  end
+
+  def release_broken_bikes
+    @bikes.each do |bike|
+      next if bike.working?
+      @broken_bikes << bike
+    end
+    @broken_bikes
   end
 
   private

@@ -7,6 +7,7 @@ describe DockingStation do
   it { is_expected.to respond_to(:dock_bike).with(1).argument }
   it { is_expected.to respond_to :bikes }
   it { is_expected.to respond_to :capacity }
+  it { is_expected.to respond_to :broken_bikes}
 
   describe '#release_bike' do
     it 'releases a bike' do
@@ -33,6 +34,15 @@ describe DockingStation do
       expect{subject.release_bike}.to raise_error "Unfortunately all docked bikes are broken"
     end
   end
+
+    describe '#release_broken_bikes' do
+      it 'only releases broken bikes' do
+        subject.dock_bike(bike)
+        allow(bike).to receive(:working?).and_return(false)
+        subject.release_broken_bikes
+        expect(subject.broken_bikes).to eq [bike]
+      end
+    end
 
   describe '#dock_bike' do
     it 'docks something' do

@@ -4,8 +4,8 @@ class Van
     @payload = []
   end
 
-  def collect_broken_bikes
-
+  def collect_broken_bikes(station)
+    #station.release_broken_bikes
   end
 
   def deliver_broken_bikes
