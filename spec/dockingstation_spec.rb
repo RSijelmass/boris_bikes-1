@@ -31,7 +31,7 @@ describe DockingStation do
       allow(bike).to receive(:report_broken).and_return("broken")
       bike.report_broken
       subject.dock_bike(bike)
-      expect{subject.release_bike}.to raise_error "Unfortunately all docked bikes are broken"
+      expect{subject.release_bike}.to raise_error "Unfortunately, all docked bikes are broken"
     end
   end
 

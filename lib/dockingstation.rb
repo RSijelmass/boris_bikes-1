@@ -11,7 +11,7 @@ attr_reader :bikes, :capacity, :broken_bikes
 
   def release_bike
     fail 'No bikes available' if empty?
-    hold?
+    find_working_bike
   end
 
   def dock_bike(bike)
@@ -21,29 +21,25 @@ attr_reader :bikes, :capacity, :broken_bikes
   end
 
   def release_broken_bikes
-    @bikes.each do |bike|
-      next if bike.working?
-      @broken_bikes << bike
-    end
+    select_broken_bikes
     @broken_bikes
   end
 
   private
     def full?
-      @bikes.count >= @capacity ? true : false
+      @bikes.count >= @capacity
     end
 
     def empty?
-      @bikes.count == 0 ? true : false
+      @bikes.count == 0
     end
 
-    def hold?
-      @bikes.each do |bike|
-        next if bike.working? == false
-        @bikes.delete(bike)
-        return bike
-      end
-      fail "Unfortunately all docked bikes are broken"
+    def find_working_bike
+      @bikes.each{ |bike| (@bikes.delete(bike); return bike) if bike.working? }
+      fail "Unfortunately, all docked bikes are broken"
     end
 
+    def select_broken_bikes
+      @bikes.each { |bike| next if bike.working?;  @broken_bikes << bike }
+    end
 end
